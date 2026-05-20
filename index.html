@@ -1,78 +1,258 @@
-<div class="app">
-  <h1>AWC Edger Ð Width Reduction</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <svg viewBox="0 0 1100 560" class="scene">
-    <defs>
-      <linearGradient id="steel" x1="0" x2="1">
-        <stop offset="0%" stop-color="#dfe8ee"/>
-        <stop offset="50%" stop-color="#f8fbfd"/>
-        <stop offset="100%" stop-color="#b8c7d1"/>
-      </linearGradient>
+  <title>AWC Edger Width Reduction</title>
 
-      <radialGradient id="roll" cx="50%" cy="45%" r="55%">
-        <stop offset="0%" stop-color="#f7f7f7"/>
-        <stop offset="45%" stop-color="#9b9b9b"/>
-        <stop offset="100%" stop-color="#333"/>
-      </radialGradient>
+  <style>
+    body {
+      margin: 0;
+      background: #f4f4f4;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111;
+    }
 
-      <clipPath id="slabClip">
-        <path id="slabShape" d="" />
-      </clipPath>
-    </defs>
+    .app {
+      max-width: 1150px;
+      margin: 28px auto;
+      padding: 20px;
+      text-align: center;
+    }
 
-    <text x="550" y="55" text-anchor="middle" class="label">Rolling direction</text>
-    <line x1="440" y1="90" x2="645" y2="90" class="arrow"/>
-    <polygon points="665,90 640,76 640,104" class="arrowHead"/>
+    h1 {
+      margin: 0 0 14px;
+      font-size: 34px;
+    }
 
-    <path id="slabStroke" d="" fill="url(#steel)" stroke="#111" stroke-width="3"/>
+    .scene {
+      width: 100%;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+    }
 
-    <g clip-path="url(#slabClip)">
-      <g id="flowLines">
-        <line x1="-250" y1="180" x2="1400" y2="180" class="texture"/>
-        <line x1="-250" y1="200" x2="1400" y2="200" class="texture"/>
-        <line x1="-250" y1="220" x2="1400" y2="220" class="texture"/>
-        <line x1="-250" y1="240" x2="1400" y2="240" class="texture"/>
-        <line x1="-250" y1="260" x2="1400" y2="260" class="texture"/>
-        <line x1="-250" y1="280" x2="1400" y2="280" class="texture"/>
-        <line x1="-250" y1="300" x2="1400" y2="300" class="texture"/>
-        <line x1="-250" y1="320" x2="1400" y2="320" class="texture"/>
-        <line x1="-250" y1="340" x2="1400" y2="340" class="texture"/>
-        <line x1="-250" y1="360" x2="1400" y2="360" class="texture"/>
-        <line x1="-250" y1="380" x2="1400" y2="380" class="texture"/>
-        <line x1="-250" y1="400" x2="1400" y2="400" class="texture"/>
+    .label {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .arrow,
+    .dim {
+      stroke: #111;
+      stroke-width: 4;
+    }
+
+    .arrowHead,
+    .dimHead {
+      fill: #111;
+    }
+
+    .texture {
+      stroke: #4f6b7a;
+      stroke-width: 2;
+      opacity: 0.55;
+    }
+
+    .rollMark {
+      stroke: #222;
+      stroke-width: 2.5;
+      opacity: 0.75;
+    }
+
+    .wlabel {
+      font-size: 38px;
+      font-weight: 800;
+    }
+
+    .formula {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    button {
+      margin-top: 22px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 999px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <h1>AWC Edger – Width Reduction</h1>
+
+    <svg viewBox="0 0 1100 560" class="scene">
+      <defs>
+        <linearGradient id="steel" x1="0" x2="1">
+          <stop offset="0%" stop-color="#dfe8ee"/>
+          <stop offset="50%" stop-color="#f8fbfd"/>
+          <stop offset="100%" stop-color="#b8c7d1"/>
+        </linearGradient>
+
+        <radialGradient id="roll" cx="50%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#f7f7f7"/>
+          <stop offset="45%" stop-color="#9b9b9b"/>
+          <stop offset="100%" stop-color="#333"/>
+        </radialGradient>
+
+        <clipPath id="slabClip">
+          <path id="slabShape" d="" />
+        </clipPath>
+      </defs>
+
+      <text x="550" y="55" text-anchor="middle" class="label">Rolling direction</text>
+
+      <line x1="440" y1="90" x2="645" y2="90" class="arrow"/>
+      <polygon points="665,90 640,76 640,104" class="arrowHead"/>
+
+      <path id="slabStroke" d="" fill="url(#steel)" stroke="#111" stroke-width="3"/>
+
+      <g clip-path="url(#slabClip)">
+        <g id="flowLines">
+          <line x1="-250" y1="180" x2="1400" y2="180" class="texture"/>
+          <line x1="-250" y1="200" x2="1400" y2="200" class="texture"/>
+          <line x1="-250" y1="220" x2="1400" y2="220" class="texture"/>
+          <line x1="-250" y1="240" x2="1400" y2="240" class="texture"/>
+          <line x1="-250" y1="260" x2="1400" y2="260" class="texture"/>
+          <line x1="-250" y1="280" x2="1400" y2="280" class="texture"/>
+          <line x1="-250" y1="300" x2="1400" y2="300" class="texture"/>
+          <line x1="-250" y1="320" x2="1400" y2="320" class="texture"/>
+          <line x1="-250" y1="340" x2="1400" y2="340" class="texture"/>
+          <line x1="-250" y1="360" x2="1400" y2="360" class="texture"/>
+          <line x1="-250" y1="380" x2="1400" y2="380" class="texture"/>
+          <line x1="-250" y1="400" x2="1400" y2="400" class="texture"/>
+        </g>
       </g>
-    </g>
 
-    <g id="topRoll">
-      <circle cx="545" cy="205" r="62" fill="url(#roll)" stroke="#111" stroke-width="3"/>
-      <circle cx="545" cy="205" r="26" fill="#cfd4d8" stroke="#222" stroke-width="3"/>
-      <line x1="485" y1="205" x2="605" y2="205" class="rollMark"/>
-      <line x1="545" y1="145" x2="545" y2="265" class="rollMark"/>
-    </g>
+      <g id="topRoll">
+        <circle cx="545" cy="205" r="62" fill="url(#roll)" stroke="#111" stroke-width="3"/>
+        <circle cx="545" cy="205" r="26" fill="#cfd4d8" stroke="#222" stroke-width="3"/>
+        <line x1="485" y1="205" x2="605" y2="205" class="rollMark"/>
+        <line x1="545" y1="145" x2="545" y2="265" class="rollMark"/>
+      </g>
 
-    <g id="bottomRoll">
-      <circle cx="545" cy="375" r="62" fill="url(#roll)" stroke="#111" stroke-width="3"/>
-      <circle cx="545" cy="375" r="26" fill="#cfd4d8" stroke="#222" stroke-width="3"/>
-      <line x1="485" y1="375" x2="605" y2="375" class="rollMark"/>
-      <line x1="545" y1="315" x2="545" y2="435" class="rollMark"/>
-    </g>
+      <g id="bottomRoll">
+        <circle cx="545" cy="375" r="62" fill="url(#roll)" stroke="#111" stroke-width="3"/>
+        <circle cx="545" cy="375" r="26" fill="#cfd4d8" stroke="#222" stroke-width="3"/>
+        <line x1="485" y1="375" x2="605" y2="375" class="rollMark"/>
+        <line x1="545" y1="315" x2="545" y2="435" class="rollMark"/>
+      </g>
 
-    <text x="545" y="475" text-anchor="middle" class="label">EDGER ROLLS</text>
+      <text x="545" y="475" text-anchor="middle" class="label">EDGER ROLLS</text>
 
-    <line x1="95" y1="175" x2="95" y2="405" class="dim"/>
-    <polygon points="95,160 84,183 106,183" class="dimHead"/>
-    <polygon points="95,420 84,397 106,397" class="dimHead"/>
-    <text x="55" y="302" text-anchor="middle" class="wlabel">W?</text>
+      <line x1="95" y1="175" x2="95" y2="405" class="dim"/>
+      <polygon points="95,160 84,183 106,183" class="dimHead"/>
+      <polygon points="95,420 84,397 106,397" class="dimHead"/>
 
-    <line x1="1010" y1="220" x2="1010" y2="360" class="dim"/>
-    <polygon points="1010,205 999,228 1021,228" class="dimHead"/>
-    <polygon points="1010,375 999,352 1021,352" class="dimHead"/>
-    <text x="1050" y="302" text-anchor="middle" class="wlabel">W?</text>
+      <text x="55" y="302" text-anchor="middle" class="wlabel">
+        W<tspan baseline-shift="sub" font-size="65%">0</tspan>
+      </text>
 
-    <text x="550" y="525" text-anchor="middle" class="formula">
-      W? &lt; W?
-    </text>
-  </svg>
+      <line x1="1010" y1="220" x2="1010" y2="360" class="dim"/>
+      <polygon points="1010,205 999,228 1021,228" class="dimHead"/>
+      <polygon points="1010,375 999,352 1021,352" class="dimHead"/>
 
-  <button id="restart">Replay animation</button>
-</div>
+      <text x="1050" y="302" text-anchor="middle" class="wlabel">
+        W<tspan baseline-shift="sub" font-size="65%">1</tspan>
+      </text>
+
+      <text x="550" y="525" text-anchor="middle" class="formula">
+        W<tspan baseline-shift="sub" font-size="65%">1</tspan>
+        &lt;
+        W<tspan baseline-shift="sub" font-size="65%">0</tspan>
+      </text>
+    </svg>
+
+    <button id="restart">Replay animation</button>
+  </div>
+
+  <script>
+    const slabShape = document.getElementById("slabShape");
+    const slabStroke = document.getElementById("slabStroke");
+    const flowLines = document.getElementById("flowLines");
+    const topRoll = document.getElementById("topRoll");
+    const bottomRoll = document.getElementById("bottomRoll");
+    const restart = document.getElementById("restart");
+
+    let animationId = null;
+    let startTime = null;
+
+    const centerY = 290;
+    const halfW0 = 115;
+    const halfW1 = 70;
+
+    function slabPath(elapsed) {
+      const pulse = Math.sin(elapsed * 0.008) * 2.5;
+
+      const xStart = 185;
+      const xBiteStart = 390;
+      const xBiteCenter = 545;
+      const xEnd = 925;
+
+      const topW0 = centerY - halfW0;
+      const bottomW0 = centerY + halfW0;
+
+      const topW1 = centerY - halfW1 + pulse;
+      const bottomW1 = centerY + halfW1 - pulse;
+
+      return `
+        M ${xStart} ${topW0}
+        L ${xBiteStart} ${topW0}
+
+        C ${xBiteStart + 55} ${topW0},
+          ${xBiteCenter - 70} ${topW1},
+          ${xBiteCenter} ${topW1}
+
+        L ${xEnd} ${topW1}
+        L ${xEnd} ${bottomW1}
+        L ${xBiteCenter} ${bottomW1}
+
+        C ${xBiteCenter - 70} ${bottomW1},
+          ${xBiteStart + 55} ${bottomW0},
+          ${xBiteStart} ${bottomW0}
+
+        L ${xStart} ${bottomW0}
+        Z
+      `;
+    }
+
+    function animate(timestamp) {
+      if (!startTime) startTime = timestamp;
+
+      const elapsed = timestamp - startTime;
+
+      const path = slabPath(elapsed);
+      slabShape.setAttribute("d", path);
+      slabStroke.setAttribute("d", path);
+
+      const flowOffset = (elapsed * 0.18) % 160;
+      flowLines.setAttribute("transform", `translate(${flowOffset}, 0)`);
+
+      topRoll.setAttribute("transform", `rotate(${elapsed * 0.12} 545 205)`);
+      bottomRoll.setAttribute("transform", `rotate(${-elapsed * 0.12} 545 375)`);
+
+      animationId = requestAnimationFrame(animate);
+    }
+
+    function startAnimation() {
+      cancelAnimationFrame(animationId);
+      startTime = null;
+      animationId = requestAnimationFrame(animate);
+    }
+
+    restart.addEventListener("click", startAnimation);
+    startAnimation();
+  </script>
+</body>
+</html>
