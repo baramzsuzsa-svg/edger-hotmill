@@ -228,23 +228,22 @@
     }
 
     function animate(timestamp) {
-      if (!startTime) startTime = timestamp;
+  if (!startTime) startTime = timestamp;
 
-      const elapsed = timestamp - startTime;
+  const elapsed = timestamp - startTime;
 
-      const path = slabPath(elapsed);
-      slabShape.setAttribute("d", path);
-      slabStroke.setAttribute("d", path);
+  const path = slabPath(elapsed);
+  slabShape.setAttribute("d", path);
+  slabStroke.setAttribute("d", path);
 
-      const flowOffset = (elapsed * 0.18) % 160;
-      flowLines.setAttribute("transform", `translate(${flowOffset}, 0)`);
+  const flowOffset = (elapsed * 0.18) % 160;
+  flowLines.setAttribute("transform", `translate(${flowOffset}, 0)`);
 
-      topRoll.setAttribute("transform", `rotate(${elapsed * 0.12} 545 205)`);
-      bottomRoll.setAttribute("transform", `rotate(${-elapsed * 0.12} 545 375)`);
+  topRoll.setAttribute("transform", `rotate(${-elapsed * 0.12} 545 205)`);
+  bottomRoll.setAttribute("transform", `rotate(${elapsed * 0.12} 545 375)`);
 
-      animationId = requestAnimationFrame(animate);
-    }
-
+  animationId = requestAnimationFrame(animate);
+}
     function startAnimation() {
       cancelAnimationFrame(animationId);
       startTime = null;
